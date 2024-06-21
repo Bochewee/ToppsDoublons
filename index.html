@@ -66,6 +66,42 @@
         displayData(json);
       });
 
+    const countryMapping = {
+      "GER": {en: "Germany", fr: "Allemagne", initials: "GER"},
+      "SCO": {en: "Scotland", fr: "Écosse", initials: "SCO"},
+      "HUN": {en: "Hungary", fr: "Hongrie", initials: "HUN"},
+      "SUI": {en: "Switzerland", fr: "Suisse", initials: "SUI"},
+      "ESP": {en: "Spain", fr: "Espagne", initials: "ESP"},
+      "CRO": {en: "Croatia", fr: "Croatie", initials: "CRO"},
+      "ITA": {en: "Italy", fr: "Italie", initials: "ITA"},
+      "ALB": {en: "Albania", fr: "Albanie", initials: "ALB"},
+      "SVN": {en: "Slovenia", fr: "Slovénie", initials: "SVN"},
+      "DEN": {en: "Denmark", fr: "Danemark", initials: "DEN"},
+      "SRB": {en: "Serbia", fr: "Serbie", initials: "SRB"},
+      "ENG": {en: "England", fr: "Angleterre", initials: "ENG"},
+      "POL": {en: "Poland", fr: "Pologne", initials: "POL"},
+      "EST": {en: "Estonia", fr: "Estonie", initials: "EST"},
+      "WAL": {en: "Wales", fr: "Pays de Galles", initials: "WAL"},
+      "FIN": {en: "Finland", fr: "Finlande", initials: "FIN"},
+      "NED": {en: "Netherlands", fr: "Pays-Bas", initials: "NED"},
+      "AUT": {en: "Austria", fr: "Autriche", initials: "AUT"},
+      "FRA": {en: "France", fr: "France", initials: "FRA"},
+      "BEL": {en: "Belgium", fr: "Belgique", initials: "BEL"},
+      "SVK": {en: "Slovakia", fr: "Slovaquie", initials: "SVK"},
+      "ROM": {en: "Romania", fr: "Roumanie", initials: "ROM"},
+      "ISR": {en: "Israel", fr: "Israël", initials: "ISR"},
+      "ICE": {en: "Iceland", fr: "Islande", initials: "ICE"},
+      "BIH": {en: "Bosnia and Herzegovina", fr: "Bosnie-Herzégovine", initials: "BIH"},
+      "UKR": {en: "Ukraine", fr: "Ukraine", initials: "UKR"},
+      "TUR": {en: "Turkiye", fr: "Turquie", initials: "TUR"},
+      "GEO": {en: "Georgia", fr: "Géorgie", initials: "GEO"},
+      "LUX": {en: "Luxembourg", fr: "Luxembourg", initials: "LUX"},
+      "GRE": {en: "Greece", fr: "Grèce", initials: "GRE"},
+      "KAZ": {en: "Kazakhstan", fr: "Kazakhstan", initials: "KAZ"},
+      "POR": {en: "Portugal", fr: "Portugal", initials: "POR"},
+      "CZE": {en: "Czechia", fr: "Tchéquie", initials: "CZE"}
+    };
+
     function displayData(data) {
       const tableBody = document.getElementById('data-body');
       tableBody.innerHTML = '';
@@ -101,9 +137,14 @@
       const rarete = document.getElementById('rarete').value.toLowerCase();
 
       const filteredData = data.filter(row => {
+        const rowPays = row.pays.toLowerCase();
         const matchesNumCase = !numCase || row.numCase.toString().toLowerCase().includes(numCase);
         const matchesType = !type || row.type.toLowerCase().includes(type);
-        const matchesPays = !pays || row.pays.toLowerCase().includes(pays);
+        const matchesPays = !pays || rowPays.includes(pays) || 
+          (countryMapping[row.pays] && 
+           (countryMapping[row.pays].en.toLowerCase().includes(pays) || 
+            countryMapping[row.pays].fr.toLowerCase().includes(pays) || 
+            countryMapping[row.pays].initials.toLowerCase().includes(pays)));
         const matchesRarete = !rarete || row.rarete.toLowerCase().includes(rarete);
 
         return matchesNumCase && matchesType && matchesPays && matchesRarete;
