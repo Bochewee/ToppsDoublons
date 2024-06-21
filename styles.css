@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: url('https://upload.wikimedia.org/wikipedia/en/1/1d/UEFA_Euro_2024_logo.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff; /* Texte blanc pour contraste */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #005BAC; /* Couleur principale de l'Euro 2024 */
+  }
+  
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  
+  .filter {
+    margin-bottom: 10px;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  button {
+    background-color: #009639; /* Couleur secondaire de l'Euro 2024 */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #00732d; /* Couleur légèrement plus foncée au survol */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #005BAC; /* Couleur principale de l'Euro 2024 */
+    color: #ffffff;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
