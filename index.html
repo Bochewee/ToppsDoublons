@@ -92,9 +92,9 @@
       data.forEach(row => {
         const key = `${row.numCase}-${row.type}-${row.pays}-${row.rarete}`;
         if (stockMap.has(key)) {
-          stockMap.set(key, stockMap.get(key) + row.stock);
+          stockMap.set(key, stockMap.get(key) + 1);
         } else {
-          stockMap.set(key, row.stock);
+          stockMap.set(key, 1);
         }
       });
 
