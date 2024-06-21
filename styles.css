@@ -3,7 +3,7 @@ body {
     padding: 20px;
     background: url('https://www.dfb.de/fileadmin/_processed_/202110/csm_248203-DL_Video_Logo_EURO_2024_8c77b748c7.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #000; /* Texte blanc pour contraste */
+    color: #000; /* Texte noir pour contraste */
   }
   
   #colorful-title {
@@ -83,3 +83,37 @@ body {
   #Pays {
     margin-left: 25rem;
   }
+  
+  /* Media Queries pour l'adaptation mobile */
+  @media (max-width: 768px) {
+    #colorful-title {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      font-size: 1.5em;
+    }
+  
+    .filter-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .filter {
+      min-width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    #Pays {
+      margin-left: 0;
+    }
+  
+    button {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: calc(100% - 2rem);
+    }
+  
+    table {
+      width: 100%;
+    }
+  }
+  
