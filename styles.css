@@ -87,6 +87,9 @@ body {
   
   /* Media Queries pour l'adaptation mobile */
   @media (max-width: 768px) {
+    body {
+        background-size: contain; /* Ajuste l'image de fond pour s'adapter à la taille de l'écran */
+      }
     #colorful-title {
       margin-left: 1rem;
       margin-right: 1rem;
