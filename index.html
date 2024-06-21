@@ -29,10 +29,6 @@
 <body>
   <h1>Recherche Google Sheet</h1>
   <div class="filter">
-    <label for="search">Recherche:</label>
-    <input type="text" id="search">
-  </div>
-  <div class="filter">
     <label for="numCase">Num case:</label>
     <input type="text" id="numCase">
   </div>
@@ -79,7 +75,7 @@
   <script>
     let data = [];
 
-    // Remplacez cette URL par l'URL de votre déploiement Apps Script
+    // Utilisation de l'URL de votre déploiement Apps Script
     const API_URL = 'https://script.google.com/macros/s/AKfycbyXSCbI2hq_1mbn6czvzRJtKcFl-mAEXbA1P2pJfuP8ftOY1gRKJZlLnNJydNJPG0WF/exec';
 
     fetch(API_URL)
@@ -118,20 +114,18 @@
     }
 
     function filterData() {
-      const search = document.getElementById('search').value.toLowerCase();
       const numCase = document.getElementById('numCase').value.toLowerCase();
       const type = document.getElementById('type').value.toLowerCase();
       const pays = document.getElementById('pays').value.toLowerCase();
       const rarete = document.getElementById('rarete').value.toLowerCase();
 
       const filteredData = data.filter(row => {
-        const matchesSearch = !search || `${row.numCase} ${row.type} ${row.pays} ${row.rarete}`.toLowerCase().includes(search);
         const matchesNumCase = !numCase || row.numCase.toLowerCase().includes(numCase);
         const matchesType = !type || row.type.toLowerCase().includes(type);
         const matchesPays = !pays || row.pays.toLowerCase().includes(pays);
         const matchesRarete = !rarete || row.rarete.toLowerCase().includes(rarete);
 
-        return matchesSearch && matchesNumCase && matchesType && matchesPays && matchesRarete;
+        return matchesNumCase && matchesType && matchesPays && matchesRarete;
       });
 
       displayData(filteredData);
