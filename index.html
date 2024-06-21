@@ -120,7 +120,7 @@
       const rarete = document.getElementById('rarete').value.toLowerCase();
 
       const filteredData = data.filter(row => {
-        const matchesNumCase = !numCase || row.numCase.toLowerCase().includes(numCase);
+        const matchesNumCase = !numCase || row.numCase.toString().toLowerCase().includes(numCase);
         const matchesType = !type || row.type.toLowerCase().includes(type);
         const matchesPays = !pays || row.pays.toLowerCase().includes(pays);
         const matchesRarete = !rarete || row.rarete.toLowerCase().includes(rarete);
