@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recherche doublons sticker Topps</title>
+  <title>Recherche Google Sheet</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -27,23 +27,40 @@
   </style>
 </head>
 <body>
-  <h1>Recherche Doublons Topps</h1>
+  <h1>Recherche Google Sheet</h1>
+  <div class="filter">
+    <label for="search">Recherche:</label>
+    <input type="text" id="search">
+  </div>
   <div class="filter">
     <label for="numCase">Num case:</label>
-    <input type="text" id="numCase" oninput="filterData()">
+    <input type="text" id="numCase">
   </div>
   <div class="filter">
     <label for="type">Type:</label>
-    <input type="text" id="type" oninput="filterData()">
+    <input type="text" id="type">
   </div>
   <div class="filter">
     <label for="pays">Pays:</label>
-    <input type="text" id="pays" oninput="filterData()">
+    <input type="text" id="pays">
   </div>
   <div class="filter">
     <label for="rarete">Rareté:</label>
-    <input type="text" id="rarete" oninput="filterData()">
+    <select id="rarete">
+      <option value="">Tous</option>
+      <option value="Argent">Argent</option>
+      <option value="Point">Point</option>
+      <option value="Epic">Epic</option>
+      <option value="Topps">Topps</option>
+      <option value="Vert">Vert</option>
+      <option value="Bleu">Bleu</option>
+      <option value="Demi">Demi</option>
+      <option value="Legende">Legende</option>
+      <option value="PTW">PTW</option>
+      <option value="SP">SP</option>
+    </select>
   </div>
+  <button onclick="filterData()">Rechercher</button>
   <table id="data-table">
     <thead>
       <tr>
@@ -51,6 +68,7 @@
         <th>Type</th>
         <th>Pays</th>
         <th>Rareté</th>
+        <th>Stock</th>
       </tr>
     </thead>
     <tbody id="data-body">
@@ -74,13 +92,26 @@
     function displayData(data) {
       const tableBody = document.getElementById('data-body');
       tableBody.innerHTML = '';
+      const stockMap = new Map();
+
       data.forEach(row => {
+        const key = `${row.numCase}-${row.type}-${row.pays}-${row.rarete}`;
+        if (stockMap.has(key)) {
+          stockMap.set(key, stockMap.get(key) + row.stock);
+        } else {
+          stockMap.set(key, row.stock);
+        }
+      });
+
+      stockMap.forEach((stock, key) => {
+        const [numCase, type, pays, rarete] = key.split('-');
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${row.numCase}</td>
-          <td>${row.type}</td>
-          <td>${row.pays}</td>
-          <td>${row.rarete}</td>
+          <td>${numCase}</td>
+          <td>${type}</td>
+          <td>${pays}</td>
+          <td>${rarete}</td>
+          <td>${stock}</td>
         `;
         tableBody.appendChild(tr);
       });
@@ -93,13 +124,15 @@
       const pays = document.getElementById('pays').value.toLowerCase();
       const rarete = document.getElementById('rarete').value.toLowerCase();
 
-      const filteredData = data.filter(row =>
-        (!search || row.numCase.toLowerCase().includes(search) || row.type.toLowerCase().includes(search) || row.pays.toLowerCase().includes(search) || row.rarete.toLowerCase().includes(search)) &&
-        (!numCase || row.numCase.toLowerCase().includes(numCase)) &&
-        (!type || row.type.toLowerCase().includes(type)) &&
-        (!pays || row.pays.toLowerCase().includes(pays)) &&
-        (!rarete || row.rarete.toLowerCase().includes(rarete))
-      );
+      const filteredData = data.filter(row => {
+        const matchesSearch = !search || `${row.numCase} ${row.type} ${row.pays} ${row.rarete}`.toLowerCase().includes(search);
+        const matchesNumCase = !numCase || row.numCase.toLowerCase().includes(numCase);
+        const matchesType = !type || row.type.toLowerCase().includes(type);
+        const matchesPays = !pays || row.pays.toLowerCase().includes(pays);
+        const matchesRarete = !rarete || row.rarete.toLowerCase().includes(rarete);
+
+        return matchesSearch && matchesNumCase && matchesType && matchesPays && matchesRarete;
+      });
 
       displayData(filteredData);
     }
