@@ -1,13 +1,27 @@
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
+    background: url('https://www.dfb.de/fileadmin/_processed_/202110/csm_248203-DL_Video_Logo_EURO_2024_8c77b748c7.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #143CDB; /* Texte blanc pour contraste */
+    color: #000; /* Texte blanc pour contraste */
   }
   
-  h1 {
-    text-align: center;
-    color: #005BAC; /* Couleur principale de l'Euro 2024 */
+  #colorful-title {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.5); /* Fond blanc translucide */
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
+  
+  #colorful-title span {
+    margin: 0 2px;
   }
   
   .filter-container {
@@ -31,6 +45,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+    border-radius: 5px;
   }
   
   button:hover {
@@ -41,6 +56,9 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* Fond blanc translucide */
+    border-radius: 10px;
+    overflow: hidden; /* Pour que le border-radius s'applique au fond */
   }
   
   th, td {
@@ -62,3 +80,6 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
   }
   
+  #Pays {
+    margin-left: 25rem;
+  }

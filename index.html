@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recherche Topps manquant</title>
+  <title>Recherche Google Sheet</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Recherche les sticker qu'il te manque</h1>
+  <h1 id="colorful-title">Recherche les stickers qu'il te manque</h1>
   <div class="filter-container">
     <div class="filter">
       <label for="numCase">Num case:</label>
@@ -17,7 +17,7 @@
       <label for="type">Type:</label>
       <input type="text" id="type">
     </div>
-    <div class="filter">
+    <div class="filter" id="Pays">
       <label for="pays">Pays:</label>
       <input type="text" id="pays">
     </div>
@@ -111,6 +111,21 @@
 
       displayData(filteredData);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const title = document.getElementById('colorful-title');
+      const colors = ['#005BAC', '#009639', '#FFD700', '#FF0000', '#000000']; // Couleurs autour de la coupe
+
+      const text = title.textContent;
+      title.innerHTML = '';
+
+      text.split('').forEach((char, index) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.color = colors[index % colors.length];
+        title.appendChild(span);
+      });
+    });
   </script>
 </body>
 </html>
