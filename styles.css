@@ -87,10 +87,6 @@ body {
   
   /* Media Queries pour l'adaptation mobile */
   @media (max-width: 768px) {
-    body {
-        background: url('https://img.diverto.tv/sites/default/files/new/image/cover/f/3/2/img-811696703?sezmlv') no-repeat center center fixed;
-        
-      }
     #colorful-title {
       margin-left: 1rem;
       margin-right: 1rem;
