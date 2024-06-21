@@ -4,6 +4,7 @@ body {
     background: url('https://www.dfb.de/fileadmin/_processed_/202110/csm_248203-DL_Video_Logo_EURO_2024_8c77b748c7.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #000; /* Texte noir pour contraste */
+    overflow-x: hidden; /* Pour éviter le dépassement horizontal */
   }
   
   #colorful-title {
@@ -114,6 +115,10 @@ body {
   
     table {
       width: 100%;
+    }
+  
+    th, td {
+      font-size: 0.9em;
     }
   }
   
